@@ -1,1 +1,5 @@
+# Puzzle input files.
 */**/input**
+
+# Rust target folder.
+*/**/target

@@ -6,26 +6,26 @@ pub fn solve(input: String) -> String {
 }
 
 fn get_lists(input: String) -> (Vec<i32>, Vec<i32>) {
-    let mut row_one = vec![];
-    let mut row_two = vec![];
+    let mut left = vec![];
+    let mut right = vec![];
 
     input.split("\n").for_each(|row| {
         let mut values = row.split("   ").map(|v| v.parse::<i32>().unwrap_or(0));
-        row_one.push(values.next().unwrap_or(0));
-        row_two.push(values.next().unwrap_or(0));
+        left.push(values.next().unwrap_or(0));
+        right.push(values.next().unwrap_or(0));
     });
 
-    row_one.sort_by(|a, b| a.cmp(b));
-    row_two.sort_by(|a, b| a.cmp(b));
+    left.sort_by(|a, b| a.cmp(b));
+    right.sort_by(|a, b| a.cmp(b));
 
-    (row_one, row_two)
+    (left, right)
 }
 
 fn part_one(input: String) -> String {
-    let (row_one, row_two) = get_lists(input);
+    let (left, right) = get_lists(input);
 
-    let mut iterable = row_two.iter();
-    let distance: i32 = row_one
+    let mut iterable = right.iter();
+    let distance: i32 = left
         .iter()
         .map(|row| {
             let l_id = iterable.next().unwrap();
@@ -37,19 +37,19 @@ fn part_one(input: String) -> String {
 }
 
 fn part_two(input: String) -> String {
-    let (row_one, row_two) = get_lists(input);
+    let (left, right) = get_lists(input);
 
     let mut last_num = -1;
     let mut last_val = -1;
 
-    let total_occurrences: i32 = row_one
+    let total_occurrences: i32 = left
         .iter()
         .map(|num| {
             if *num == last_num {
                 return last_val;
             }
 
-            let occurrences = row_two.iter().fold(0, |acc, n| {
+            let occurrences = right.iter().fold(0, |acc, n| {
                 if *n == *num {
                     return acc + 1;
                 }
