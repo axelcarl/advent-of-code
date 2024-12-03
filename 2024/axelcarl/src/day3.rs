@@ -51,7 +51,6 @@ fn part_two(input: String) -> String {
 
     input.trim().chars().into_iter().for_each(|c| {
         if c == ')' {
-            println!("{parsed}");
             if &parsed[parsed.len() - 3..] == "do(" {
                 // Handle do.
                 should_do = true;
