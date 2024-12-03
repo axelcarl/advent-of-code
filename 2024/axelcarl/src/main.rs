@@ -1,5 +1,6 @@
 mod day1;
 mod day2;
+mod day3;
 
 use std::{env::args, fs::read_to_string};
 
@@ -13,6 +14,7 @@ fn main() {
     let solution = match day {
         1 => day1::solve(input),
         2 => day2::solve(input),
+        3 => day3::solve(input),
         _ => "Day not implemented yet!".to_string(),
     };
 
